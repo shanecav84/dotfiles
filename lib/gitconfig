@@ -1,0 +1,53 @@
+# This is Git's per-user configuration file.
+
+[user]
+    name = Shane Cavanaugh
+    email = shane@patientdev.co
+    signingkey = 462A806C8BB13D33
+
+[alias]
+    a = add --all
+    ai = add -i
+    amd = commit --amend
+    #############
+    br = branch
+    #############
+    ci = commit
+    co = checkout
+    #############
+    f = fetch --verbose
+    #############
+    st = status
+
+[color]
+    ui = true
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+#[color "diff"]
+#    meta = yellow bold
+#    frag = magenta bold
+#    old = red bold
+#    new = green bold
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+
+[commit]
+    gpgsign = true
+
+[format]
+    pretty = %C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset
+
+[push]
+    default = simple
+
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
