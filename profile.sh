@@ -3,6 +3,7 @@
 # Mah dotfiles
 for f in $DOTFILES_PATH/lib/*.sh; do source $f; done
 
+startup.sh
 
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
     source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
@@ -18,4 +19,4 @@ if [ -f $LUNCHY_DIR/lunchy-completion.bash ]; then
  . $LUNCHY_DIR/lunchy-completion.bash
 fi
 
-source git-completion.bash
+source $DOTFILES_PATH/git-completion.bash
