@@ -2,5 +2,5 @@
 
 # Shell
 alias reload!='. ~/.bash_profile'
-alias today='today.rb'
+alias today="$DOTFILES_PATH/bin/today.rb"
 alias bunup="$DOTFILES_PATH/bin/bunup.rb"
