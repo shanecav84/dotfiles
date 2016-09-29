@@ -26,3 +26,5 @@ LUNCHY_DIR=/usr/local/lib/ruby/gems/2.2.0/gems/lunchy-0.10.3/lib/../extras
    if [ -f /lunchy-completion.bash ]; then
      . /lunchy-completion.bash
    fi
+
+source git-completion.bash
