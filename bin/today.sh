@@ -19,4 +19,6 @@ if [[ $hours_since -gt 3 || $1 -eq "now" ]]; then
     brew_output
     printf "\n"
     bundle_output
+
+    echo $now > $last_updated
 fi
