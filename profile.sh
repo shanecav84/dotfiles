@@ -3,7 +3,7 @@
 # Mah dotfiles
 for f in $DOTFILES_PATH/lib/*.sh; do source $f; done
 
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+if [[ $(which brew) > /dev/null && -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]]; then
     source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
