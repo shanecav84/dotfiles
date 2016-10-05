@@ -1,24 +1,25 @@
 #!/usr/bin/env bash
 
-last_updated=$(<$DOTFILES_PATH/tmp/today_last_updated.txt)
-now=$(date +%s)
-hours_since=$((($now-$last_updated)/60/60))
-DCS_PATH="$HOME/Dev/dcs/dcs-manager"
-
 brew_output() {
-    printf "# Homebrew\n"
-    brew outdated
+    brew update > /dev/null
+    local output=$(brew outdated)
+
+    if [[ ! -z $output ]]; then
+        printf "# Homebrew\n"
+        brew outdated
+    fi
 }
 
 bundle_output() {
-    printf "# DCS bundler\n"
-    $DCS_PATH/bin/bundle outdated --parseable
+    local DCS_PATH="$HOME/Dev/dcs/dcs-manager"
+    local output=$($DCS_PATH/bin/bundle outdated --parseable)
+
+    if [[ ! -z $output ]]; then
+        printf "# DCS bundler\n"
+        printf $output
+    fi
 }
 
-if [[ $hours_since -gt 3 || $1 -eq "now" ]]; then
-    brew_output
-    printf "\n"
-    bundle_output
-
-    echo $now > $last_updated
-fi
+brew_output
+printf "\n"
+bundle_output
