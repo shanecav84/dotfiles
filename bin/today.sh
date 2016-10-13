@@ -1,21 +1,25 @@
 #!/usr/bin/env bash
 
+printf "Checking updates...\n"
+
 brew_output() {
+    printf "# Homebrew\n"
+
     brew update > /dev/null
     local output=$(brew outdated)
 
     if [[ ! -z $output ]]; then
-        printf "# Homebrew\n"
         brew outdated
     fi
 }
 
 bundle_output() {
+    printf "# DCS bundler\n"
+
     local DCS_PATH="$HOME/Dev/dcs/dcs-manager"
     local output=$($DCS_PATH/bin/bundle outdated --parseable)
 
     if [[ ! -z $output ]]; then
-        printf "# DCS bundler\n"
         printf $output
     fi
 }
@@ -23,3 +27,4 @@ bundle_output() {
 brew_output
 printf "\n"
 bundle_output
+printf "\n\n"
