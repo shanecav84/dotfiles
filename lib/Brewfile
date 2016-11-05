@@ -1,0 +1,35 @@
+tap 'Homebrew/bundle'
+tap 'caskroom/cask'
+brew 'readline'
+brew 'bash'
+brew 'bash-completion'
+brew 'curl'
+brew 'ffmpeg'
+brew 'git'
+brew 'imagemagick'
+brew 'mysql'
+brew 'nginx'
+brew 'node'
+brew 'nmap'
+brew 'openssl'
+brew 'postgresql'
+brew 'python'
+brew 'python3'
+brew 'r'
+brew 'ruby'
+
+cask 'atom'
+cask 'dropbox'
+cask 'firefox'
+cask 'github-desktop'
+cask 'google-chrome'
+cask 'rubymine'
+cask 'skype'
+cask 'slack'
+cask 'vlc'
+
+mas '1Password', id: 443987910
+mas 'Pages', id: 409201541
+mas 'Sip', id: 507257563
+mas 'Twitter', id: 409789998
+mas 'Xcode', id: 497799835
