@@ -3,6 +3,10 @@
 # Shell
 alias reload!='. ~/.bash_profile'
 alias today="$DOTFILES_PATH/bin/today.sh"
+
+# Update Homebrew
+alias brewup='brew update && brew upgrade && brew cleanup'
+
 alias bunup="$DOTFILES_PATH/bin/bunup.rb"
 alias cdcs="cd ~/Dev/dcs/dcs-manager"
 alias reset="clear && printf '\e[3J'"
