@@ -13,3 +13,6 @@ alias reset="clear && printf '\e[3J'"
 
 source "$DOTFILES_PATH/lib/jb_rubygem_page.sh"
 alias rg="jb_rubygem_page"
+
+# Overrides
+alias ls='ls -alh'
