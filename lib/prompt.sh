@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PS1="$Cyan\W $Red>$IPurple>$Yellow>$Green>$Cyan>$Color_Off "
+PS1="$Cyan\W$Color_Off $Red>$Color_Off$IPurple>$Color_Off$Yellow>$Color_Off$Green>$Color_Off$Cyan>$Color_Off "
 
 # bash-git-prompt
 GIT_PS1_SHOWUPSTREAM="auto"
