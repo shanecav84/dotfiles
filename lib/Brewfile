@@ -16,7 +16,7 @@ brew 'nmap'
 brew 'openssl'
 brew 'postgresql'
 brew 'python'
-brew 'python3'
+#brew 'python3'
 brew 'r'
 brew 'ruby'
 
