@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
-PS1="$Cyan\W$Color_Off $Red>$Color_Off$IPurple>$Color_Off$Yellow>$Color_Off$Green>$Color_Off$Cyan>$Color_Off "
+if [[ $(hostname) =~ *.stg*. ]]; then
+    hostname=$(echo "⚠️  ")
+elif [[ $(hostname) =~ *.prd*. ]]; then
+    hostname=$(echo "‼️  ")
+else
+    hostname=""
+fi
+
+PS1="$hostname$Cyan\W$Color_Off $Red>$Color_Off$IPurple>$Color_Off$Yellow>$Color_Off$Green>$Color_Off$Cyan>$Color_Off "
 
 # bash-git-prompt
 GIT_PS1_SHOWUPSTREAM="auto"
