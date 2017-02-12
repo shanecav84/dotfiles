@@ -12,14 +12,17 @@
     #############
     br = branch
     #############
+    cam = commit --amend --no-edit
     ci = commit
     co = checkout
     #############
     f = fetch --verbose
     #############
+    l = log --pretty='format:%C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset'
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     #############
+    sh = show --pretty=format:'%C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset%n%n%b'
     st = status
 
 [color]
