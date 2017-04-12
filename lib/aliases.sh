@@ -18,3 +18,6 @@ alias rg="jb_rubygem_page"
 
 # Overrides
 alias ls='ls -alh'
+
+# Cuz i just can't anymore
+alias heroky=heroku
