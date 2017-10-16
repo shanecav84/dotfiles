@@ -14,7 +14,7 @@ class HttpStatus
     if format_message.nil?
       raise "format_message didn't work"
     end
-    puts @reverse
+    IO.popen("less -R", "w") { |f| f.puts @reverse }
   end
 
   private
