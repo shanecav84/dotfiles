@@ -12,6 +12,7 @@ alias bunup="$DOTFILES_PATH/bin/bunup.rb"
 alias cdcs="cd ~/Code/dcs/dcs-manager"
 alias cdj="cd ~/Code/classroomdj"
 alias reset="clear && printf '\e[3J'"
+alias timestamp='date "+%Y%m%d%H%M%S"'
 
 source "$DOTFILES_PATH/lib/jb_rubygem_page.sh"
 alias rg="jb_rubygem_page"

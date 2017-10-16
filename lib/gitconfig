@@ -2,7 +2,7 @@
 
 [user]
     name = Shane Cavanaugh
-    email = shane@patientdev.co
+    email = shane@shanecav.net
     signingkey = 462A806C8BB13D33
 
 [alias]
@@ -18,7 +18,7 @@
     #############
     f = fetch --verbose
     #############
-    l = log --pretty='format:%C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset'
+    l = log --pretty='format:%C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cD%Creset'
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     #############
@@ -46,6 +46,15 @@
 
 [commit]
     gpgsign = true
+
+[diff]
+	tool = icdiff
+[difftool "icdiff"]
+	cmd = icdiff --no-bold $LOCAL $REMOTE
+[difftool]
+	prompt = false
+[pager]
+	difftool = true
 
 [format]
     pretty = %C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset
