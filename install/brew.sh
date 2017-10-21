@@ -25,6 +25,7 @@ brew install 'rbenv'
 brew install 'ruby-build'
 brew install 'ruby'
 
+brew cask install 'alfred'
 brew cask install 'atom'
 brew cask install 'github-desktop'
 brew cask install 'google-chrome'
