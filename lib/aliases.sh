@@ -13,6 +13,7 @@ alias cdcs="cd ~/Code/dcs/dcs-manager"
 alias cdj="cd ~/Code/classroomdj"
 alias reset="clear && printf '\e[3J'"
 alias timestamp='date "+%Y%m%d%H%M%S"'
+alias httpstatus="$DOTFILES_PATH/bin/httpstatus.rb"
 
 source "$DOTFILES_PATH/lib/jb_rubygem_page.sh"
 alias rg="jb_rubygem_page"
