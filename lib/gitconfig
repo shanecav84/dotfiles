@@ -18,6 +18,7 @@
     #############
     f = fetch --verbose
     #############
+    gh = "!f() { URL=$(git config remote.${1-origin}.url | sed -e 's#^.*@#https://#' -e 's#.git$##' -e 's#:#/#2'); git web--browse $URL; }; f"
     l = log --pretty='format:%C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cD%Creset'
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
