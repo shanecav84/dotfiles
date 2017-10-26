@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+if [[ -d .git && ($(git remote get-url origin) == *"github.com"*) ]]; then
+    ci_status=$(hub ci-status);
+    if [[ $ci_status == 'pending' ]]; then echo '🔸 '; fi
+fi
