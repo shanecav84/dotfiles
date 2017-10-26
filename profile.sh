@@ -31,4 +31,3 @@ if [ -f $LUNCHY_DIR/lunchy-completion.bash ]; then
 fi
 
 source $DOTFILES_PATH/git-completion.bash
-source ~/.env
