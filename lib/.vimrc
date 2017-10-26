@@ -18,3 +18,4 @@ call plug#end()
 syntax enable
 colorscheme one
 set background=dark
+set number
