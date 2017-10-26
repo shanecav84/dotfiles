@@ -2,7 +2,6 @@
 
 # Shell
 alias reload!='. ~/.bash_profile'
-alias today="$DOTFILES_PATH/bin/today.sh"
 
 # Update Homebrew
 alias brewup='brew update && brew upgrade && brew cleanup'
