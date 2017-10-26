@@ -23,6 +23,8 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     #############
+    pr = pull-request # https://hub.github.com/
+    #############
     sh = show --pretty=format:'%C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset%n%n%b'
     st = status
 
