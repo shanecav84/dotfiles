@@ -1,6 +1,15 @@
 #! /usr/bin/env bash
 
-if [[ -d .git && ($(git remote get-url origin) == *"github.com"*) ]]; then
+source $DOTFILES_PATH/lib/colors.sh
+
+hub_ci_status() {
     ci_status=$(hub ci-status);
-    if [[ $ci_status == 'pending' ]]; then echo '🔸 '; fi
+    case $ci_status in
+        'pending') echo -e "[$Yellow*$Color_Off]";;
+        'success') echo -e "[$Green*$Color_Off]";;
+    esac	
+}
+
+if [[ -d .git && ($(git remote get-url origin) == *"github.com"*) ]]; then
+    hub_ci_status
 fi
