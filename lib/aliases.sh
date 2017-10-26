@@ -19,6 +19,7 @@ source "$DOTFILES_PATH/lib/jb_rubygem_page.sh"
 alias rg="jb_rubygem_page"
 
 # Overrides
+alias git=hub
 alias ls='ls -alh'
 
 # Cuz i just can't anymore
