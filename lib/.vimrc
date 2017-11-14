@@ -2,6 +2,8 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+set laststatus=2
+
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
