@@ -6,25 +6,27 @@
     signingkey = 462A806C8BB13D33
 
 [alias]
+    #A###########
     a = add --all
     ai = add -i
     amd = commit --amend
-    #############
+    #B###########
     br = branch
-    #############
+    #C###########
     cam = commit --amend --no-edit
     ci = commit
     co = checkout
-    #############
+    #F###########
     f = fetch --verbose
-    #############
+    #G###########
     gh = "!f() { URL=$(git config remote.${1-origin}.url | sed -e 's#^.*@#https://#' -e 's#.git$##' -e 's#:#/#2'); git web--browse $URL; }; f"
-    l = log --pretty='format:%C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cD%Creset'
+    #L###########
+    l = log --pretty='format:%C(yellow)%h%Creset - (%cn) %C(cyan)%d%Creset %s - %Cgreen%cD%Creset'
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    #############
+    #P###########
     pr = pull-request # https://hub.github.com/
-    #############
+    #S###########
     sh = show --pretty=format:'%C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset%n%n%b'
     st = status
 
