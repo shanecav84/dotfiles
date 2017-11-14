@@ -16,6 +16,8 @@
     cam = commit --amend --no-edit
     ci = commit
     co = checkout
+    #D###########
+    dc = diff --cached
     #F###########
     f = fetch --verbose
     #G###########
