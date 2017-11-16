@@ -19,15 +19,4 @@ fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Python `virtualenv` stuff
-VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then 
-    source /usr/local/bin/virtualenvwrapper.sh; 
-fi
-
-# `lunchy` gem
-if [ -f $LUNCHY_DIR/lunchy-completion.bash ]; then
-   . $LUNCHY_DIR/lunchy-completion.bash
-fi
-
 source $DOTFILES_PATH/git-completion.bash
