@@ -52,8 +52,11 @@ module Bunup
   end
 
   class CLI
-    MAJOR_VERSION_UPGRADE_WARNING = "This is a major version upgrade with " \
-        "possible breaking changes. Are you sure you want to continue? [y/N] "
+    MAJOR_VERSION_UPGRADE_WARNING = <<-TEXT
+This is a major version upgrade with possible breaking changes.
+
+Are you sure you want to continue? [y/N]
+    TEXT
     USAGE = "Usage: bunup.rb gem_name"
 
     def initialize(*args)
@@ -88,8 +91,9 @@ module Bunup
     # Versioning (https://semver.org/spec/v2.0.0.html). Let's make sure the user
     # is aware of that.
     def prompt_for_major_upgrade
-      print MAJOR_VERSION_UPGRADE_WARNING
-      abort 'No update performed' if 'n' == STDIN.gets.chomp.downcase
+      print "WARNING: #{@gem.name} is being upgraded from #{@gem.installed_version} " \
+        "to #{@gem.newest_version}. " + MAJOR_VERSION_UPGRADE_WARNING.chomp + " "
+      abort 'No update performed' unless 'y' == STDIN.gets.chomp.downcase
     end
 
     def versions
