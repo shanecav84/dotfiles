@@ -39,7 +39,7 @@ module Bunup
     #   "\ngem-name (newest 1.0.0, installed 2.0.0)\n"
     def outdated
       stdout, stderr, status = bundle_outdated
-      validate_output(stderr, status)
+      validate_output(stdout, stderr, status)
       stdout.strip
     end
 
@@ -60,7 +60,7 @@ module Bunup
 
     private
 
-    def validate_output(stderr, status)
+    def validate_output(stdout, stderr, status)
       # `bundler outdated` exits with a 0 status if the gem is up-to-date
       abort 'Gem is up-to-date' if status.success?
 
@@ -68,8 +68,7 @@ module Bunup
       # If it exits with some other status, print the error and exit with that
       # status
       unless status.to_i == 256
-        print "ERROR:\n"
-        print "#{stderr}\n"
+        print "ERROR: #{stderr == "" ? stdout : stderr}".chomp + "\n"
         exit(status.to_i)
       end
     end
