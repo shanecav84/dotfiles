@@ -3,6 +3,28 @@
 require 'open3'
 require 'ostruct'
 
+# Adds a message with an indicator while performing the given block
+# https://en.wikipedia.org/wiki/Throbber
+def throb(message, &blk)
+  thr = Thread.new do
+    glyphs = %w[⡀ ⠄ ⠂ ⠁ ⠂ ⠄].freeze
+    glyphs_index = 0
+    wave = glyphs.dup
+    loop do
+      print "#{message} " + wave.join + "\r"
+      wave.shift
+      glyphs_index = (glyphs_index + 1) % glyphs.length
+      wave << glyphs[glyphs_index]
+      sleep 0.1
+    end
+  end
+
+  yield blk
+ensure
+  Thread.kill(thr)
+  print "#{message}...done\r\n"
+end
+
 # Updates a single gem using `bundle update` and makes a git commit
 # with a useful message, e.g. "rails 4.2.4 (was 4.2.3)".
 module Bunup
@@ -22,11 +44,17 @@ module Bunup
     end
 
     def update
-      output = `bundle update #{@gem.name}`
+      stdout, _stderr, _status = bundle_update
 
       # Bundler might be unable to update the gem, and won't say why.
-      if output.match?('its version stayed the same')
-        abort "Bundler was unable to update #{@gem.name}"
+      if stdout.match?('its version stayed the same')
+        abort "ERROR: Bundler was unable to update #{@gem.name} for reasons unknown"
+      end
+    end
+
+    def bundle_update
+      throb "Updating #{@gem.name} #{@gem.installed_version} -> #{@gem.newest_version}" do
+        Open3.capture3("bundle update #{@gem.name}")
       end
     end
 
@@ -40,14 +68,16 @@ module Bunup
       # If it exits with some other status, print the error and exit with that
       # status
       unless status.to_i == 256
-        print 'The following error occurred:\n'
+        print "ERROR:\n"
         print "#{stderr}\n"
         exit(status.to_i)
       end
     end
 
     def bundle_outdated
-      ::Open3.capture3("bundler outdated --parseable #{@gem.name}")
+      throb "Checking for new version of #{@gem.name}" do
+        Open3.capture3("bundler outdated --parseable #{@gem.name}")
+      end
     end
   end
 
@@ -73,8 +103,12 @@ Are you sure you want to continue? [y/N]
       prompt_for_major_upgrade if major_version_upgrade
 
       @bundler.update
+
       @git.add
       @git.commit
+
+      print "#{@gem.name} updated to #{@gem.newest_version} "\
+        "(was #{@gem.installed_version})\n"
     end
 
     private
@@ -100,7 +134,7 @@ Are you sure you want to continue? [y/N]
       # Handle errors with capturing version info from output
       match_data = Bundler::OUTDATED_PATTERN.match(@bundler.outdated)
       if match_data.nil?
-        abort "Unable to determine current version of gem: #{@gem.name}"
+        abort "ERROR: Unable to determine current version of gem: #{@gem.name}"
       end
 
       [
@@ -145,8 +179,6 @@ Are you sure you want to continue? [y/N]
     def commit
       `git commit -m "#{message}"`
     end
-
-    private
 
     def message
       format '%s %s (was %s)',
