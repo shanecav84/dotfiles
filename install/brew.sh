@@ -3,7 +3,6 @@
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap 'Homebrew/bundle'
 brew tap 'caskroom/cask'
-brew tap 'homebrew/science'
 
 brew install 'readline'
 brew install 'bash'
@@ -24,11 +23,15 @@ brew install 'python3'
 brew install 'rbenv'
 brew install 'ruby-build'
 brew install 'ruby'
+brew install 'yarn'
 
+brew cask install '1password'
 brew cask install 'alfred'
 brew cask install 'atom'
+brew cask install 'dash'
 brew cask install 'github-desktop'
 brew cask install 'google-chrome'
+brew cask install 'mailplane'
 brew cask install 'rubymine'
 brew cask install 'skype'
 brew cask install 'slack'
