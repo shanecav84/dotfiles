@@ -6,6 +6,7 @@ alias reload!='. ~/.bash_profile'
 # Update Homebrew
 alias brewup='brew update && brew upgrade && brew cleanup'
 
+alias brc="echo -e '$YellowRunning Rails console in sandbox mode...$Color_Off'; bin/rails c --sandbox"
 alias brs="bin/rails s"
 alias bunup="$DOTFILES_PATH/bin/bunup.rb"
 alias cdcs="cd ~/Code/dcs/dcs-manager"
@@ -14,9 +15,6 @@ alias libyear="libyear-bundler"
 alias reset="clear && printf '\e[3J'"
 alias timestamp='date "+%Y%m%d%H%M%S"'
 alias httpstatus="$DOTFILES_PATH/bin/httpstatus.rb"
-
-source "$DOTFILES_PATH/lib/jb_rubygem_page.sh"
-alias rg="jb_rubygem_page"
 
 # Overrides
 alias git=hub
