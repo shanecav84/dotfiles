@@ -11,10 +11,10 @@ alias brs="bin/rails s"
 alias bunup="$DOTFILES_PATH/bin/bunup.rb"
 alias cdcs="cd ~/Code/dcs/dcs-manager"
 alias cdj="cd ~/Code/classroomdj"
+alias git-delete-count="$DOTFILES_PATH/bin/git_delete_count.rb"
 alias libyear="libyear-bundler"
 alias reset="clear && printf '\e[3J'"
 alias timestamp='date "+%Y%m%d%H%M%S"'
-alias httpstatus="$DOTFILES_PATH/bin/httpstatus.rb"
 
 # Overrides
 alias git=hub
