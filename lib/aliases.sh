@@ -8,7 +8,8 @@ alias brewup='brew update && brew upgrade && brew cleanup'
 
 alias brc="echo -e '$YellowRunning Rails console in sandbox mode...$Color_Off'; bin/rails c --sandbox"
 alias brs="bin/rails s"
-alias bunup="$DOTFILES_PATH/bin/bunup.rb"
+alias bx='bundle exec'
+# alias bunup="$DOTFILES_PATH/bin/bunup.rb"
 alias cdcs="cd ~/Code/dcs/dcs-manager"
 alias cdj="cd ~/Code/classroomdj"
 alias git-delete-count="$DOTFILES_PATH/bin/git_delete_count.rb"
