@@ -18,7 +18,7 @@ alias timestamp='date "+%Y%m%d%H%M%S"'
 
 # Overrides
 alias git=hub
-alias ls='ls -alh'
+alias ls='ls -a'
 
 # Cuz i just can't anymore
 alias heroky=heroku
