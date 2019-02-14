@@ -56,14 +56,26 @@
 [commit]
     gpgsign = true
 
-[diff]
-	tool = icdiff
-[difftool "icdiff"]
-	cmd = icdiff --no-bold $LOCAL $REMOTE
-[difftool]
-	prompt = false
-[pager]
-	difftool = true
+[core]
+  excludesfile = /Users/shaneca
+    pager = diff-so-fancy | les
+[svn]
+    rmdir = true
+[color]
+    ui = true
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 2
+[color "diff"]
+    meta = yellow
+    frag = magenta bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
 
 [format]
     pretty = %C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset
