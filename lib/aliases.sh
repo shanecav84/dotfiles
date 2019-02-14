@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
 # Shell
-alias reload!='. ~/.bash_profile'
+alias reload!='. ~/.bashrc'
 
 # Update Homebrew
-alias brewup='brew update && brew upgrade && brew cleanup'
+alias brewup='brew update && brew upgrade && brew cask upgrade && brew cleanup
+'
 
 alias brc="echo -e '$YellowRunning Rails console in sandbox mode...$Color_Off'; bin/rails c --sandbox"
 alias brs="bin/rails s"
 alias bx='bundle exec'
+alias cat='bat'
 alias git-delete-count="$DOTFILES_PATH/bin/git_delete_count.rb"
 alias libyear="libyear-bundler"
 alias reset="clear && printf '\e[3J'"
