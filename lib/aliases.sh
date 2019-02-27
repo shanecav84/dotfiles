@@ -4,8 +4,7 @@
 alias reload!='. ~/.bashrc'
 
 # Update Homebrew
-alias brewup='brew update && brew upgrade && brew cask upgrade && brew cleanup
-'
+alias brewup='brew update && brew upgrade && brew cask upgrade && brew cleanup'
 
 alias brc="echo -e '$YellowRunning Rails console in sandbox mode...$Color_Off'; bin/rails c --sandbox"
 alias brs="bin/rails s"
