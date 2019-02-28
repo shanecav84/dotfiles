@@ -21,9 +21,9 @@ function git_prompt() {
   fi
 
   if [ "$dirty" = true ]; then
-    echo " [$Yellow${ref#refs/heads/}$Color_Off]"
+    echo "@$Yellow${ref#refs/heads/}$Color_Off"
   else
-    echo " [${ref#refs/heads/}]"
+    echo "@${ref#refs/heads/}"
   fi
 }
 
