@@ -46,7 +46,12 @@ module YNAB
     end
 
     def parse_transaction(row)
-      parse_transaction(row)
+      [
+        row['date'],
+        row['description'],
+        row['category'],
+        row['memo']
+      ]
     end
   end
 end
