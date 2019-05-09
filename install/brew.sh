@@ -1,42 +1,61 @@
 #!/usr/bin/env bash
 
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew tap 'Homebrew/bundle'
-brew tap 'caskroom/cask'
+if ! [ -x "$(command -v brew)" ]; then
+    printf "brew not found. Installing brew. \n"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
-brew install 'readline'
-brew install 'bash'
-brew install 'bash-completion'
-brew install 'bash-git-prompt'
-brew install 'bat'
-brew install 'curl'
-brew install 'git'
-brew install 'heroku'
-brew install 'imagemagick'
-brew install 'mariadb'
-brew install 'nginx'
-brew install 'node'
-brew install 'nmap'
-brew install 'openssl'
-brew install 'postgresql'
-brew install 'python'
-brew install 'python3'
-brew install 'rbenv'
-brew install 'ruby-build'
-brew install 'ruby'
-brew install 'yarn'
+taps=(
+    'Homebrew/bundle'
+    'caskroom/cask'
+)
+for tap in ${taps[*]}; do
+    brew tap "$tap"
+done
 
-brew cask install '1password'
-brew cask install 'alfred'
-brew cask install 'atom'
-brew cask install 'brave-browser'
-brew cask install 'dash'
-brew cask install 'github-desktop'
-brew cask install 'google-chrome'
-brew cask install 'mailplane'
-brew cask install 'rubymine'
-brew cask install 'skype'
-brew cask install 'slack'
-brew cask install 'spotify'
-brew cask install 'virtualbox'
-brew cask install 'vlc'
+brews=(
+    'readline'
+    'bash'
+    'bash-completion'
+    'bash-git-prompt'
+    'bat'
+    'curl'
+    'git'
+    'heroku'
+    'imagemagick'
+    'mariadb'
+    'nginx'
+    'node'
+    'nmap'
+    'openssl'
+    'postgresql'
+    'python'
+    'python3'
+    'rbenv'
+    'ruby-build'
+    'ruby'
+    'yarn'
+)
+for brew in ${brews[*]}; do
+    brew install "$brew"
+done
+
+casks=(
+    '1password'
+    'alfred'
+    'atom'
+    'brave-browser'
+    'dash'
+    'github-desktop'
+    'google-chrome'
+    'mailplane'
+    'rubymine'
+    'skype'
+    'slack'
+    'spotify'
+    'virtualbox'
+    'vlc'
+)
+for cask in ${casks[*]}; do
+    brew cask install "$cask"
+done
