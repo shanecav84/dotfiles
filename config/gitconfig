@@ -21,7 +21,7 @@
     extract = "!f() { TARGET=$(git rev-parse "$1"); git reset -p $TARGET; }; f"
     #F###########
     f = fetch --verbose
-    fix = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+    fix = !git_fix.rb
     #G###########
     gh = "!f() { URL=$(git config remote.${1-origin}.url | sed -e 's#^.*@#https://#' -e 's#.git$##' -e 's#:#/#2'); git web--browse $URL; }; f"
     #L###########
