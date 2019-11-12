@@ -19,16 +19,20 @@ module Git
 end
 
 class GitFix
-  def self.call
+  def self.call(argv = [])
     abort('Nothing is staged. Stage files before fixing.') if Git.staged == ''
 
-    prompt = TTY::Prompt.new
-    commits = Git.log.split("\n")
-    selected = prompt.
-      select('Choose commit to fix', commits, filter: true, per_page: 10).
-      match(/^(?<sha>\w*) (?<msg>.*)$/)
-    Git.fix(selected[:sha])
+    if argv.empty?
+      prompt = TTY::Prompt.new
+      commits = Git.log.split("\n")
+      selected = prompt.
+        select('Choose commit to fix', commits, filter: true, per_page: 10).
+        match(/^(?<sha>\w*) (?<msg>.*)$/)
+      Git.fix(selected[:sha])
+    else
+      Git.fix(argv.first)
+    end
   end
 end
 
-GitFix.call
+GitFix.call(ARGV)
