@@ -35,4 +35,8 @@ class GitFix
   end
 end
 
-GitFix.call(ARGV)
+begin
+  GitFix.call(ARGV)
+rescue SignalException
+ print "\n"
+end
