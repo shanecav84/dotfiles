@@ -33,7 +33,6 @@ brews=(
     'python3'
     'rbenv'
     'ruby-build'
-    'ruby'
     'yarn'
 )
 for brew in ${brews[*]}; do
