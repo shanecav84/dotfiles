@@ -27,8 +27,15 @@ function git_prompt() {
   fi
 }
 
+cyan="\001$(tput setaf 6)\002"
+red="\001$(tput setaf 1)\002"
+purple="\001$(tput setaf 5)\002"
+yellow="\001$(tput setaf 3)\002"
+green="\001$(tput setaf 2)\002"
+reset_color="\001$(tput sgr0)\002"
+
 function prompt() {
-    PS1="\@ $Cyan\W$Color_Off$(git_prompt) $Red>$Color_Off$IPurple>$Color_Off$Yellow>$Color_Off$Green>$Color_Off$Cyan>$Color_Off "
+    PS1="\@ $cyan\W$reset_color$(git_prompt) $red>$reset_color$purple>$reset_color$yellow>$reset_color$green>$reset_color$cyan>$reset_color "
 }
 
 PROMPT_COMMAND=prompt
