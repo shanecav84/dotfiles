@@ -80,6 +80,9 @@
 [format]
     pretty = %C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset
 
+[pull]
+    rebase = true
+
 [push]
     default = simple
 
