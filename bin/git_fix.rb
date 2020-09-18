@@ -6,11 +6,12 @@ require 'tty-prompt'
 
 module Git
   def self.fix(sha)
-    `TARGET=$(git rev-parse "#{sha}"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^;`
+    target = `git rev-parse "#{sha}"`
+    `git commit --fixup=#{target} ${@:2} && EDITOR=true git rebase -i --autostash --autosquash #{target}`
   end
 
   def self.log
-    `git log --format=format:'%h %s'`
+    `git log --format=format:'%h %s' --max-count=100`
   end
 
   def self.staged
