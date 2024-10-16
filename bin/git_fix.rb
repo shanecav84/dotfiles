@@ -6,8 +6,8 @@ require 'tty-prompt'
 
 module Git
   def self.fix(sha)
-    target = `git rev-parse "#{sha}"`
-    `git commit --fixup=#{target} ${@:2} && EDITOR=true git rebase -i --autostash --autosquash #{target}`
+    target = `git rev-parse "#{sha}"`.strip
+    `git commit --fixup #{target} && EDITOR=true git rebase -i --autostash --autosquash #{target}~1`
   end
 
   def self.log

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Shell
-alias reload!='. ~/.bash_profile'
+alias reload!='. ~/.zshrc'
 
 # Update Homebrew
 alias brewup='brew upgrade && brew cask upgrade'

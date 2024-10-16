@@ -34,8 +34,9 @@ function git_prompt() {
   fi
 }
 
-function prompt() {
-    PS1="\@ $cyan\W$reset_color$(git_prompt) $red>$reset_color$purple>$reset_color$yellow>$reset_color$green>$reset_color$cyan>$reset_color "
-}
+# DISABLE IN ZSH
+#function prompt() {
+#    PS1="\@ $cyan\W$reset_color$(git_prompt) $red>$reset_color$purple>$reset_color$yellow>$reset_color$green>$reset_color$cyan>$reset_color "
+#}
 
-PROMPT_COMMAND=prompt
+#PROMPT_COMMAND=prompt
