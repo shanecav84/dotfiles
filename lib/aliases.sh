@@ -22,3 +22,5 @@ alias ls='ls -a'
 
 # Cuz i just can't anymore
 alias heroky=heroku
+
+alias o='f() { ollama run llama3.2 "$1" };f'
