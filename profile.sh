@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Mah dotfiles
 for f in $DOTFILES_PATH/lib/*.sh; do source $f; done

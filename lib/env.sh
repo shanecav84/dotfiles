@@ -6,6 +6,7 @@ export PATH=$DOTFILES_PATH/bin:${PATH}
 
 # Homebrew, presumably
 export PATH=$(echo $PATH | sed 's|/usr/local/bin||; s|/usr/local/sbin||; s|::|:|; s|^:||; s|\(.*\)|/usr/local/bin:/usr/local/sbin:\1|')
+export PATH="/opt/homebrew/bin:$PATH"
 
 # Python `virtualenv` stuff
 export WORKON_HOME=$HOME/.virtualenvs
