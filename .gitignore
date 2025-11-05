@@ -1,4 +1,6 @@
 .DS_Store
-.idea
-tmp
+.idea/*
+tmp/*
 .byebug_history
+.vscode
+.ruby-lsp
