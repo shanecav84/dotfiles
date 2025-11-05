@@ -5,7 +5,7 @@ export PROMPT="%t [%F{cyan}%m%f] %B%F{cyan}%1~%f%b %F{red}>%F{yellow}>%F{green}>
 for f in $(ls $DOTFILES_PATH/lib/*.sh| sort -n); do source $f; done
 
 if type brew &>/dev/null; then
-   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+   fpath=($(brew --prefix)/share/zsh-completions $fpath)
    autoload -Uz compinit && compinit
  fi
 
