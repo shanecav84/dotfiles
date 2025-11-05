@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Shell
 alias reload!='. ~/.zshrc'
@@ -9,7 +9,6 @@ alias brewup='brew upgrade && brew cask upgrade'
 alias brc="echo -e '$YellowRunning Rails console in sandbox mode...$Color_Off'; bx rails c --sandbox"
 alias brs="bx rails s"
 alias bx='bundle exec'
-alias cat='bat'
 alias git-delete-count="$DOTFILES_PATH/bin/git_delete_count.rb"
 alias mine="open -a RubyMine"
 alias libyear="libyear-bundler"

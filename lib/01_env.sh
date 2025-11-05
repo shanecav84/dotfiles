@@ -1,8 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 export EDITOR="vi"
 
-# Mah dotfiles
-export PATH=$DOTFILES_PATH/bin:${PATH}
+export GPG_TTY=$(tty)
 
 # Homebrew, presumably
 export PATH=$(echo $PATH | sed 's|/usr/local/bin||; s|/usr/local/sbin||; s|::|:|; s|^:||; s|\(.*\)|/usr/local/bin:/usr/local/sbin:\1|')
@@ -15,8 +14,3 @@ export PROJECT_HOME=$HOME/Sites/django
 # Locales
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-# Lunchy gem
-if [ -f $LUNCHY_DIR/lunchy-completion.bash ]; then
-    LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-fi
