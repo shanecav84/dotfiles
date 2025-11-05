@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-export PROMPT="%t [%F{cyan}%m%f] %B%F{cyan}%1~%f%b %F{red}>%F{yellow}>%F{green}>%F{cyan}>%F{blue}>%f "
+export PROMPT='%t [%F{cyan}%m%f] $(git_prompt_info)%B%F{cyan}%1~%f%b %F{red}>%F{yellow}>%F{green}>%F{cyan}>%F{blue}>%f '
 
 for f in $(ls $DOTFILES_PATH/lib/*.sh| sort -n); do source $f; done
 
