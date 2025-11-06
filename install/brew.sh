@@ -2,7 +2,7 @@
 
 if ! [ -x "$(command -v brew)" ]; then
     printf "brew not found. Installing brew. \n"
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install
 fi
 
 taps=(
