@@ -4,7 +4,7 @@
 alias reload!='. ~/.zshrc'
 
 # Update Homebrew
-alias brewup='brew upgrade && brew update'
+alias brewup='HOMEBREW_NO_ENV_HINTS=1 brew upgrade && brew update'
 
 alias libyear="libyear-bundler"
 alias timestamp='date "+%Y%m%d%H%M%S"'
