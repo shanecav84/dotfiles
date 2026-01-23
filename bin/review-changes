@@ -1,0 +1,171 @@
+#!/usr/bin/env node
+
+const { execSync, spawnSync } = require('child_process');
+const http = require('http');
+
+const PROMPT = "Provide an outline of a code review with sections for possible bugs, regressions, clarification, documentation, and optimization. Do not generate code for examples or fixes."
+
+async function main() {
+  const debugMode = process.env.DEBUG_MODE === 'true';
+
+  try {
+    const ollamaBaseURL = process.env.OLLAMA_BASE_URL
+
+    if (!ollamaBaseURL) {
+      throw new Error('Please export process.env.OLLAMA_BASE_URL');
+    }
+
+    // Argument: git commit hash as the starting point
+    let startCommit = process.argv.slice(2)[0]
+    let diff;
+
+    const { status: dirty } = spawnSync("git", ['diff', '--quiet'], { cwd: process.cwd() })
+
+    if (!startCommit && !dirty) {
+        startCommit = execSync(`git rev-parse HEAD`, { cwd: process.cwd() })
+          .toString()
+          .trim();
+    }
+
+    if (startCommit) {
+      // Get the previous commit hash
+      let prevCommit;
+      try {
+        prevCommit = execSync(`git rev-parse ${startCommit}~1`, { cwd: process.cwd() })
+          .toString()
+          .trim();
+    
+        if (debugMode) console.log(`Previous commit retrieved: ${prevCommit}`);
+      } catch (error) {
+        throw new Error('Failed to get previous commit hash');
+      }
+
+      try {
+        diff = execSync(`git diff-tree --no-commit-id -p -M ${prevCommit} ${startCommit}`, { cwd: process.cwd() })
+          .toString();
+    
+        if (debugMode) console.log('Diff retrieved successfully.');
+      } catch (error) {
+        throw new Error('Failed to get diff between commits');
+      }
+    } else if (dirty) {
+        diff = execSync(`git diff HEAD`, { cwd: process.cwd() })
+          .toString();
+    }
+
+    if (!diff.trim()) {
+      console.log('No changes detected. No diff to submit.');
+      return;
+    }
+
+    // Hard-coded or passed via command-line arguments Ollama API configuration
+    let ollamaEndpoint = `${ollamaBaseURL}/api/generate`; // Replace with actual URL
+
+    if (!ollamaEndpoint.trim()) {
+      throw new Error('OLLAMA_ENDPOINT_URL must be set');
+    }
+
+    // Prepare the payload for the Ollama endpoint
+    const payload = JSON.stringify({
+      model: 'qwen2.5-coder:14b',
+      system: 'You are a senior developer.',
+      prompt: `${PROMPT} \n\n \`${diff}\``,
+      options: {
+        temperature: 0.2 // Low temp so the output is more focused
+      }
+    });
+
+    if (debugMode) console.log('Payload prepared:', payload);
+
+    // Initialize HTTP request
+    const requestUrl = new URL(ollamaEndpoint);
+    let requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(payload)
+      },
+      path: requestUrl.pathname + requestUrl.search,
+      host: requestUrl.hostname,
+      port: 11434,
+    };
+
+    if (debugMode) console.debug(requestOptions)
+
+    process.stdout.write(`PROMPT: ${PROMPT}\n\n`)
+
+    const req = http.request(requestOptions, res => {
+      if (debugMode) console.debug(`Response status code: ${res.statusCode}`);
+
+      let responseDataChunks = [];
+
+      // Handle streaming response data
+      res.on('data', chunk => {
+        responseDataChunks.push(chunk);
+
+        const fullData = Buffer.concat(responseDataChunks).toString();
+        const completeJsonMatch = fullData.match(/\{.*\}$/);
+
+        if (completeJsonMatch) {
+          try {
+            const jsonResponse = JSON.parse(completeJsonMatch[0]);
+            
+            // Handle known response fields
+            if (jsonResponse.message && debugMode) {
+              console.log(`Message: ${jsonResponse.message}`);
+            }
+
+            if ('progress' in jsonResponse) {
+              const progress = Number(jsonResponse.progress);
+              
+              if (!isNaN(progress)) {
+                console.log(`Progress: ${(progress / 100).toFixed(2)}%`);
+              }
+            } else {
+              // Log full JSON payload if no recognized fields
+              process.stdout.write(`${fullData}\n`);
+            }
+
+            responseDataChunks.shift();
+          } catch (jsonError) {
+            console.warn('Received non-JSON data:', chunk.toString());
+          }
+        } else {
+          const json = chunk.toString()
+          const obj = JSON.parse(json)
+          if (obj['done']) {
+            process.stdout.write('\n')
+            process.exit(0)
+          }
+          process.stdout.write(obj['response'])
+        }
+      });
+
+      res.on('end', () => {
+        if (debugMode) console.debug('\nFinished.\n');
+      });
+    });
+
+    // Handle request errors
+    req.on('error', err => {
+      console.error(`Request Error: ${err}`);
+      req.abort();
+    });
+
+    // Write data to the request body and end the request
+    req.write(payload);
+    req.end();
+
+  } catch (exception) {
+    console.error(`Error encountered: ${exception.message}`, '\n');
+    
+    if (debugMode) {
+      console.error('Full error stack:\n', exception.stack, '\n');
+    }
+  
+    process.exit(1); // Exit with a non-zero status upon major errors
+  }
+}
+
+// Execute the main function when script starts
+main();
