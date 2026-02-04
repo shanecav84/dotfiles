@@ -33,6 +33,7 @@
     #S###########
     sh = show --pretty=format:'%C(yellow)%h%Creset - (%cn) %Cblue%d%Creset %s - %Cgreen%cr%Creset%n%n%b'
     st = status
+    wip = !git a && git ci -m 'WIP'
 
 [color]
     ui = true
