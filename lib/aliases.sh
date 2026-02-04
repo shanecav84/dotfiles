@@ -8,6 +8,3 @@ alias brewup='HOMEBREW_NO_ENV_HINTS=1 brew upgrade && brew update'
 
 alias timestamp='date "+%Y%m%d%H%M%S"'
 
-# Overrides
-alias git="hub"
-
